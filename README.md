@@ -1,0 +1,2 @@
+# DADS5250_AI_Movie_Discovery_Assistant
+AI powered movie recommendation assistant
