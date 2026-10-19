@@ -1,0 +1,15 @@
+{
+    "python.analysis.enablePytestSupport": true,
+    "python.analysis.exclude": [
+        "${workspaceFolder}/DADS5250-GenAI/*",
+        "${workspaceFolder}/.vscode/*",
+        "**/__pycache__",
+        "**/node_modules",
+        "**/.*",
+        "**/*.pyc",
+        "**/*.pyo",
+        "**/*.egg-info",
+        "**/*.dist-info",
+        ".venv"    
+    ]
+}
