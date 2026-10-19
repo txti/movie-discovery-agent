@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 from fastembed import TextEmbedding
 
-from agent.catalog import build_catalog, load_raw
+from db.catalog import build_catalog, load_raw
 
 INDEX_DIR = Path(__file__).resolve().parents[1] / "data" / "chroma"
 COLLECTION = "movies"

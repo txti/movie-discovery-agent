@@ -44,7 +44,7 @@ powershell -ExecutionPolicy Bypass -File .\scripts\bootstrap.ps1
 Downloads the movie catalog from Hugging Face, embeds it into `data/chroma`, then runs a few test searches. A clean build took 30 minutes on a laptop CPU in power-saving mode. An interrupted build resumes where it stopped, and later runs skip the build.
 
 ```bash
-uv run python -m agent.movie_index
+uv run python -m db.movie_index
 ```
 
 ## Run
