@@ -1,6 +1,49 @@
 # DADS5250_AI_Movie_Discovery_Assistant
 AI powered movie recommendation assistant
 
+## Layout
+
+```
+.
+|-- app.py                  entry point, launches the UI
+|-- agents/recommender/     LangGraph RAG agent
+|-- db/                     catalog loading and Chroma index
+|-- notebooks/              data exploration
+|-- scripts/                bootstrap installers
+`-- ui/                     Gradio chat app
+```
+
+## Architecture
+
+```mermaid
+flowchart LR
+    User --> UI["ui/gradio_app.py"]
+    UI --> Agent["agents/recommender/agent.py"]
+    Agent --> Index["db/movie_index.py"]
+    Index --> Chroma[("data/chroma")]
+    Agent --> LLM["OpenRouter LLM"]
+    HF["Hugging Face catalog"] -->|"db/catalog.py, one-time build"| Chroma
+```
+
+In each chat turn, Gradio passes the visible history to the agent. The agent searches Chroma with everything the user has said so far, then asks the LLM to recommend from those results.
+
+```mermaid
+sequenceDiagram
+    actor User
+    participant UI as Gradio
+    participant Agent as LangGraph agent
+    participant Chroma
+    participant LLM as OpenRouter
+    User->>UI: message
+    UI->>Agent: ask(message, history)
+    Agent->>Chroma: retrieve, search(user turns, k=10)
+    Chroma-->>Agent: top 10 movies
+    Agent->>LLM: generate, prompt + movies + history
+    LLM-->>Agent: recommendations
+    Agent-->>UI: reply
+    UI-->>User: reply
+```
+
 ## Setup
 
 Run every command from the project root.
